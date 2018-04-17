@@ -23,7 +23,7 @@ $sqls ="";
 try
 {
  // do something that can go wrong
-	while($row = mysql_fetch_array($result)){
+	while($row = mysqli_fetch_array($result)){
 		$text = $row['text'];
 		$text = str_replace("kode ","",$text);
 		$text = str_replace("code ","",$text);
@@ -38,7 +38,7 @@ catch (Exception $e)
 foreach ($ubah as $sql) {
 	try
 	{
-	mysql_query($sql,$dbs);
+	mysqli_query($sql,$dbs);
 	}
 	catch (Exception $e)
 	{
