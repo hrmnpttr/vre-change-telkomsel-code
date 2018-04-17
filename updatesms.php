@@ -15,7 +15,7 @@ mysqli_select_db($db_name, $dbs) or DIE("nama database1 tersebut tidak ada !!");
 
 
 //gateway server
-$sql = "select * from sms_outbox where text like'%code%' or  text like'%kode%' limit 10";
+$sql = "select * from sms_outbox where pesan like'%Code%' or  pesan like'%Kode%' limit 10";
 $result = mysqli_query($sql,$dbs);
 //gateway client
 $ubah = array();
@@ -24,10 +24,10 @@ try
 {
  // do something that can go wrong
 	while($row = mysqli_fetch_array($result)){
-		$text = $row['text'];
-		$text = str_replace("kode ","",$text);
-		$text = str_replace("code ","",$text);
-		array_push($ubah," update sms_outbox set text = '" . $text . "' where id = " . $row['id'] . "; ");
+		$text = $row['pesan'];
+		$text = str_replace("Kode ","",$text);
+		$text = str_replace("Code ","",$text);
+		array_push($ubah," update sms_outbox set pesan = '" . $text . "' where id = " . $row['id'] . "; ");
 		echo $row['no_hp'] . "<br>";
 	}
 }
