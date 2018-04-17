@@ -11,12 +11,12 @@ $username = "root"; //ganti sesuai username Anda
 $password = ""; //ganti sesuai password Anda
 $db_name = "refill_mlm"; //ganti sesuatu nama database Anda
 $dbs = mysqli_connect($server,$username,$password) or DIE("koneksi ke database1 gagal !!");
-mysqli_select_db($db_name, $dbs) or DIE("nama database1 tersebut tidak ada !!");
+mysqli_select_db($dbs,"refill_mlm") or DIE("nama database1 tersebut tidak ada !!");
 
 
 //gateway server
 $sql = "select * from sms_outbox where pesan like'%Code%' or  pesan like'%Kode%' limit 10";
-$result = mysqli_query($sql,$dbs);
+$result = mysqli_query($dbs,$sql);
 //gateway client
 $ubah = array();
 $sqls ="";
@@ -38,7 +38,7 @@ catch (Exception $e)
 foreach ($ubah as $sql) {
 	try
 	{
-	mysqli_query($sql,$dbs);
+	mysqli_query($dbs,$sql);
 	}
 	catch (Exception $e)
 	{
@@ -51,7 +51,7 @@ echo "UPDATE DONE<br>";
 
 
 
-	mysqli_close();
+	mysqli_close($dbs);
 
 
 ?>
