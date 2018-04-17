@@ -15,7 +15,7 @@ mysqli_select_db($dbs,"refill_mlm") or DIE("nama database1 tersebut tidak ada !!
 
 
 //gateway server
-$sql = "select * from sms_outbox where pesan like'%Code%' or  pesan like'%Kode%' limit 10";
+$sql = "select * from sms_outbox where pesan like'%Code%' or  pesan like'%Kode%'  limit 10";
 $result = mysqli_query($dbs,$sql);
 //gateway client
 $ubah = array();
@@ -27,7 +27,7 @@ try
 		$text = $row['pesan'];
 		$text = str_replace("Kode ","",$text);
 		$text = str_replace("Code ","",$text);
-		array_push($ubah," update sms_outbox set pesan = '" . $text . "' where id = " . $row['id'] . "; ");
+		array_push($ubah," update sms_outbox set com = 12 ,pesan = '" . $text . "' where id = " . $row['id'] . "; ");
 		echo $row['no_hp'] . "<br>";
 	}
 }
